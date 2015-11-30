@@ -1,13 +1,14 @@
 #' Performs the bootstrap for one condition
 #' \code{one_bootstrap} performs the bootstrap for one condition
-#' @import boot DEoptim tidyr
+#' @import boot DEoptim
+#' @importFrom tidyr gather
 #' @keywords internal
 #' @export
 parn <- 'No te quejes'
 one_bootstrap <- function(d, x, k, n, psyfunguesslapses, funname,
-                           guess, lapses, parini, pariniset, optimization, bootstrap, B,
+                           guess, lapses, parini, pariniset, optimization,
+                          bootstrap, B,
                           groups, ypred) {
-
 
   if (length(groups) != 0) ypred <- semi_join(ypred, d, by = groups)
 

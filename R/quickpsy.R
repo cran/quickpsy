@@ -117,6 +117,10 @@
 #' plotthresholds(fit, geom = 'point')
 #' @export
 #' @import MPDiR
+#' @importFrom  graphics par
+#' @importFrom stats approx as.formula lm median optim pnorm pweibull qnorm
+#' quantile qweibull rbinom
+#' @importFrom utils combn head read.table tail
 
 
 quickpsy <- function(d, x = x, k = k, n = n, grouping, random, within, between,
@@ -136,6 +140,7 @@ quickpsy <- function(d, x = x, k = k, n = n, grouping, random, within, between,
   if (!missing(between)) between <- as.character(substitute(between))[-1]
   if (!missing(grouping)) grouping <- as.character(substitute(grouping))[-1]
 
+
   ### calling the standard evaluation of quickpsy
   quickpsy_(d, x, k, n, grouping, random, within, between, xmin, xmax, log, fun,
             parini, guess, lapses, prob, thresholds, logliks, bootstrap,
@@ -152,6 +157,6 @@ quickpsy <- function(d, x = x, k = k, n = n, grouping, random, within, between,
 #'signal and the perceived positions of moving objects. Journal of Vision,
 #' 7(7), 1.
 
-NULL
+'qpdat'
 
 

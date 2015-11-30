@@ -5,30 +5,30 @@
 parini <- function(d, x, k, n, guess, lapses, psyfun) {
   calculate_parini <- function(d, x, k, n, guess, lapses, psyfun) {
     ntrials <- unique(d[[n]])
-    y <- d[[k]] / d[[n]]
+    yq <- d[[k]] / d[[n]]
     if (is.numeric(guess) && is.numeric(lapses)) {
       gue <- guess
       lap  <- lapses
     }
     if (is.logical(guess) && is.logical(lapses)) {
       if (guess && lapses) {
-        gue <- min(y)
-        lap  <- 1 - max(y)
+        gue <- min(yq)
+        lap  <- 1 - max(yq)
       }
     }
     if (is.logical(guess) && is.numeric(lapses)) {
       lap <- lapses
-      if (guess) gue <- min(y)
+      if (guess) gue <- min(yq)
       if (!guess) gue <- 0
     }
     if (is.numeric(guess) && is.logical(lapses)) {
       gue <- guess
-      if (lapses) lap <- 1 - max(y)
+      if (lapses) lap <- 1 - max(yq)
       if (!lapses) lap <- 0
     }
 
     ### Transforming y values to be closer to the range (0,1)
-    y01 <- (y - gue) / (1 - gue - lap)
+    y01 <- (yq - gue) / (1 - gue - lap)
     datp <- data.frame(x = d[[x]], y01)
 
     ### Replacing 0s and/or 1s by 1 / (2 * n) and 1 - 1 / (2 * n) where n is the number of trials
@@ -68,7 +68,7 @@ parini <- function(d, x, k, n, guess, lapses, psyfun) {
       if (lapses) para <- c(p1, p2, lap)
       if (!lapses) para <- c(p1, p2)
     }
-    data.frame(paran = paste0('p', seq(1, length(para))), para)
+    data.frame(paran = paste0('p', seq(1, length(para))), par = para)
   }
   d %>% do(calculate_parini(., x, k, n, guess, lapses, psyfun))
 }

@@ -1,7 +1,4 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-
-
 quickpsy is an R package developed by [Daniel Linares](http://www.dlinares.org) and [Joan López-Moliner](http://www.ub.edu/viscagroup/joan/) to quickly fit and plot psychometric functions for multiple conditions. It makes an extensive use of Hadley Wickham's packages [ggplot2](http://ggplot2.org/) and [dplyr](http://cran.r-project.org/web/packages/dplyr/index.html).
 
 To understand the fundamentals of fitting psychometric functions in R, we recommend the book [Modeling Psychophysical Data in R](http://www.springer.com/gp/book/9781461444749).
@@ -32,16 +29,22 @@ Download and install [R](http://cran.rstudio.com) (we also recommend [Rstudio](h
 
 In R, install the following packages: boot, DEoptim, dplyr, ggplot2, tidyr and devtools.
 
-``` {.r}
+``` r
 install.packages('boot')
 install.packages('DEoptim')
 install.packages('tidyr')
 install.packages('devtools')
 ```
 
-Install quickpsy from github (will also install dplyr and ggplot2) and load the package
+Quickpsy can be installed from CRAN
 
-``` {.r}
+``` r
+install.packages('quickpsy')
+```
+
+To install the latest developed version, you can install quickpsy from github (which will also install dplyr and ggplot2)
+
+``` r
 library(devtools)
 install_github('danilinares/quickpsy')
 ```
@@ -49,27 +52,39 @@ install_github('danilinares/quickpsy')
 Example
 -------
 
-``` {.r}
+``` r
 library(quickpsy)
 library(MPDiR) # contains the Vernier data; use ?Venier for the reference
 
 fit <- quickpsy(Vernier, Phaseshift, NumUpward, N, 
                 grouping = .(Direction, WaveForm, TempFreq))
 plotcurves(fit)
-plotpar(fit)
+```
+
+![plots of vernier fits.](vernierFitPlot.png)
+
+``` r
+plotpar(fit) #plot the parameters
+```
+
+![params of vernier fits](vernierParamsPlot.png)
+
+``` r
 plotthresholds(fit)
 ```
+
+![thresholds of vernier fits](vernierThreshesPlot.png)
 
 Help
 ----
 
 To obtain information and examples for specific functions use *?*
 
-``` {.r}
+``` r
 ?plotcurves
 ```
 
-For further information visit [www.dlinares.org/quickpsy.html](http://www.dlinares.org/quickpsy.html)
+For more examples and information visit [www.dlinares.org/quickpsy.html](http://www.dlinares.org/quickpsy.html)
 
 Other R packages
 ----------------
