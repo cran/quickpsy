@@ -7,8 +7,7 @@
 quickpsy_(d, x = "x", k = "k", n = "n", grouping, random, within, between,
   xmin = NULL, xmax = NULL, log = FALSE, fun = "cum_normal_fun",
   parini = NULL, guess = 0, lapses = 0, prob = NULL, thresholds = T,
-  logliks = FALSE, bootstrap = "parametric", B = 100, ci = 0.95,
-  optimization = "optim")
+  bootstrap = "parametric", B = 100, ci = 0.95, optimization = "optim")
 }
 \arguments{
 \item{d}{Data frame with the results of a Yes-No experiment to fit.
@@ -88,9 +87,6 @@ estimated, p3 will be the guess rate and p4 the lapse rate.}
 \item{thresholds}{If \code{FALSE}, thresholds are not calculated
 (default is \code{TRUE}).}
 
-\item{logliks}{If \code{TRUE}, the loglikelihoods are calculated
-(default is \code{FALSE}).}
-
 \item{bootstrap}{\code{'parametric'} performs parametric bootstrap;
 \code{'nonparametric'} performs non-parametric bootstrap;
 \code{'none'} does not perform bootstrap (default is \code{'parametric'}).}
@@ -112,12 +108,6 @@ lower and upper bounds.}
 to the non-standard evaluation NSE function \code{quickpsy}.
 \href{http://adv-r.had.co.nz/Computing-on-the-language.html}{SE functions can be more easily called from other functions.}
 In SE functions, you need to quote the names of the variables.
-}
-\examples{
-library(MPDiR) # contains the Vernier data
-fit <- quickpsy_(Vernier, 'Phaseshift', 'NumUpward', 'N',
-                grouping = c('Direction', 'WaveForm', 'TempFreq'), B = 20)
-plotcurves(fit)
 }
 \seealso{
 \code{\link{quickpsy}}

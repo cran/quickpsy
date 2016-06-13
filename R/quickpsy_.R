@@ -64,8 +64,6 @@
 #' \code{guess + .5 * (1 - guess)}).
 #' @param thresholds If \code{FALSE}, thresholds are not calculated
 #' (default is \code{TRUE}).
-#' @param logliks If \code{TRUE}, the loglikelihoods are calculated
-#'  (default is \code{FALSE}).
 #' @param bootstrap \code{'parametric'} performs parametric bootstrap;
 #' \code{'nonparametric'} performs non-parametric bootstrap;
 #' \code{'none'} does not perform bootstrap (default is \code{'parametric'}).
@@ -79,18 +77,13 @@
 #' When \code{'DE'} is used, \code{parini} should be specified as a list with
 #' lower and upper bounds.
 #' @seealso \code{\link{quickpsy}}
-#' @examples
-#' library(MPDiR) # contains the Vernier data
-#' fit <- quickpsy_(Vernier, 'Phaseshift', 'NumUpward', 'N',
-#'                 grouping = c('Direction', 'WaveForm', 'TempFreq'), B = 20)
-#' plotcurves(fit)
 #' @export
 quickpsy_ <- function(d, x = 'x', k = 'k', n = 'n', grouping, random, within,
                       between, xmin = NULL, xmax = NULL, log = FALSE,
                       fun = 'cum_normal_fun', parini = NULL, guess = 0,
-                      lapses = 0, prob = NULL, thresholds = T,  logliks = FALSE,
-                      bootstrap = 'parametric', B = 100, ci = .95,
-                      optimization = 'optim') {
+                      lapses = 0, prob = NULL, thresholds = T,
+                      bootstrap = 'parametric', B = 100,
+                      ci = .95, optimization = 'optim') {
 
   options(dplyr.print_max = 1e9)
 
@@ -100,7 +93,6 @@ quickpsy_ <- function(d, x = 'x', k = 'k', n = 'n', grouping, random, within,
   if (is.null(parini)) pariniset <- FALSE
   else pariniset <- TRUE
 
-  cat('Estimating parameters...\n')
   qp <- fitpsy(d, x, k, n, random, within, between, grouping, xmin, xmax, log,
                fun, parini, pariniset, guess, lapses, optimization)
 
@@ -122,24 +114,40 @@ quickpsy_ <- function(d, x = 'x', k = 'k', n = 'n', grouping, random, within,
     qp <- c(qp, list(thresholds = thresholds(qp, prob, log)))
   }
 
-  if (logliks) qp <- c(qp, list(logliks = logliks(qp)))
+  qp <- c(qp, list(logliks = logliks(qp)))
+  qp <- c(qp, list(loglikssaturated = loglikssaturated(qp)))
+  qp <- c(qp, list(deviance = deviance(qp)))
+
 
   if (bootstrap == 'parametric' || bootstrap == 'nonparametric') {
-    cat('Performing bootstrap...\n')
-    qp <- c(qp, list(parbootstrap = parbootstrap(qp, bootstrap, B)))
-    qp <- c(qp, list(parci = parci(qp, ci)))
+    qp <- c(qp, list(avbootstrap = avbootstrap(qp, bootstrap, B)))
+    qp <- c(qp, list(parbootstrap = parbootstrap(qp)))
+    parci <- parci(qp, ci)
+    qp$par <- merge(qp$par, parci)
+
+    qp <- c(qp, list(logliksboot = logliksboot(qp)))
+    qp <- c(qp, list(logliksbootsaturated = logliksbootsaturated(qp)))
+    qp <- c(qp, list(devianceboot = devianceboot(qp)))
+    deviancep <- deviancep(qp)
+    qp$deviance <- merge(qp$deviance, deviancep)
+
+    qp <- c(qp, list(aic = aic(qp)))
+
+
      if (!(
        (length(qp$groups)==0) ||
        (length(qp$groups)==1 && nrow(unique(qp$averages[qp$groups]))==1)
        )) {
        qp <- c(qp, list(parcomparisons = parcomparisons(qp, ci)))
      }
+
     qp <- c(qp, list(curvesbootstrap = curvesbootstrap(qp, log = log)))
+
     if (thresholds) {
       qp <- c(qp,
               list(thresholdsbootstrap = thresholdsbootstrap(qp, prob, log)))
-      qp <- c(qp, list(thresholdsci = thresholdsci(qp, ci)))
-
+      thresholdsci = thresholdsci(qp, ci)
+      qp$thresholds <- merge(qp$thresholds, thresholdsci)
       if (!(
         (length(qp$groups)==0) ||
         (length(qp$groups)==1 && nrow(unique(qp$averages[qp$groups]))==1)
