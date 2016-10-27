@@ -28,6 +28,7 @@
 #' plotcurves_(fit, color = 'Direction')
 #' plotcurves_(fit, xpanel = 'Direction', color = 'WaveForm', ci = FALSE)
 #' @import ggplot2
+#' @importFrom utils packageVersion
 #' @export
 plotcurves_ <- function(qp, panel = NULL, xpanel = NULL, ypanel = NULL,
                color = NULL, averages = TRUE, curves = TRUE,
@@ -57,7 +58,6 @@ plotcurves_ <- function(qp, panel = NULL, xpanel = NULL, ypanel = NULL,
     if (!is.null(ypanel)) groups <- setdiff(groups, ypanel)
     if (!is.null(panel)) groups <- setdiff(groups, panel)
     if (length(groups) == 1) color <- groups[[1]]
-
     if (!is.null(panel)) p <- p +
       facet_wrap(as.formula(paste0('~',panel)))
     if (!is.null(xpanel)) p <- p +
@@ -138,11 +138,14 @@ plotcurves_ <- function(qp, panel = NULL, xpanel = NULL, ypanel = NULL,
       if (thresholds) {
         qp$thresholds[[color]] <- factor(qp$thresholds[[color]])
         # get present axis limits
-        axisYrange <- ggplot_build(p)$panel$ranges[[1]]$y.range
+        if (packageVersion('ggplot2') >= '2.2.0')
+          axisYrange <- ggplot_build(p)$layout$panel_ranges[[1]]$y.range
+        else
+          axisYrange <- ggplot_build(p)$panel$ranges[[1]]$y.range
         p <- p + geom_linerange(data = qp$thresholds,
                     aes_string(x = 'thre',
-                    		   ymin = axisYrange[1] - .2, #make sure extends below axis line
-                               ymax = qp$thresholds$prob, color = color))
+                    		       ymin = axisYrange[1] - .2, #make sure extends below axis line
+                    		       ymax = qp$thresholds$prob, color = color))
         #Because threshline extended below axis limit, axis automatically scaled below it.
         #Restore it to its former values
     	p <- p + coord_cartesian(ylim=axisYrange)

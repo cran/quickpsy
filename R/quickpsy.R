@@ -47,7 +47,7 @@
 #' @param parini Initial parameters. quickpsy calculates default
 #' initial parameters using probit analysis, but it is also possible to
 #' specify a vector of initial parameters or a list of the form
-#' \code{list(c(par1min, par2max), c(par2min, par2max))} to
+#' \code{list(c(par1min, par1max), c(par2min, par2max))} to
 #' constraint the lower and upper bounds of the parameters (when
 #' \code{optimization = 'DE'}, parini should be also a list).
 #' @param guess Value indicating the guess rate \eqn{\gamma} (default is 0). If
@@ -91,8 +91,7 @@
 #'   \item \code{ypred} Predicted probabilities at the values of the explanatory
 #'   variable.
 #'   \item \code{curves} Curves.
-#'   \item \code{para} Fitted parameters.
-#'   \item \code{paraci} Confidence intervals for the parameters.
+#'   \item \code{par} Fitted parameters and its confidence intervals.
 #'   \item \code{curvesbootstrap} Bootstrap curves.
 #'   \item \code{thresholds} Thresholds.
 #'   \item \code{thresholdsci} Confidence intervals for the thresholds.
