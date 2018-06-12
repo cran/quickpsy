@@ -49,7 +49,7 @@
 #' constraint the lower and upper bounds of the parameters (when
 #' \code{optimization = 'DE'}, parini should be also a list).
 #' @param guess Value indicating the guess rate \eqn{\gamma} (default is 0). If
-#' \code{TRUE}, the guess rate is estimated as the i + 1 paramEter where
+#' \code{TRUE}, the guess rate is estimated as the i + 1 parameter where
 #' i corresponds to the number of parameters of \code{fun}. If, for
 #' example, \code{fun} is a predefined shape with parameters p1 and p2,
 #' then the guess rate corresponds to parameter p3.

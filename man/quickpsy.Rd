@@ -95,7 +95,7 @@ estimated, p3 will be the guess rate and p4 the lapse rate.}
 
 \item{ci}{Confidence intervals level based on percentiles (default is .95).}
 
-\item{optimization}{Method used for optimizization. The default is 'optim' which uses
+\item{optimization}{Method used for optimization. The default is 'optim' which uses
 the \code{optim} function. It can also be \code{'DE'} which uses de function
 \code{DEoptim} from the package DEoptim, which performs differential
 evolution optimization. By using \code{DEoptim}, it is less likely that the
@@ -135,7 +135,7 @@ A list containing the following components:
  psychometric functions of the form
 \deqn{\psi(x) = \gamma + (1 - \gamma - \lambda) * fun(x)}
 where \eqn{\gamma} is the guess rate, \eqn{\lambda} is the lapse rate and
-\eqn{fun} is a sigmoidal-shape function with asymppotes at 0 and 1.
+\eqn{fun} is a sigmoidal-shape function with asymptotes at 0 and 1.
 }
 \examples{
 # make sure that all the requires packages are installed
@@ -161,4 +161,3 @@ introduction. London: Academic Press.
 \seealso{
 \code{\link{quickpsy_}}
 }
-

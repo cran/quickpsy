@@ -138,7 +138,9 @@ plotcurves_ <- function(qp, panel = NULL, xpanel = NULL, ypanel = NULL,
       if (thresholds) {
         qp$thresholds[[color]] <- factor(qp$thresholds[[color]])
         # get present axis limits
-        if (packageVersion('ggplot2') >= '2.2.0')
+        if (packageVersion('ggplot2') >= '2.2.1.9')
+          axisYrange <- ggplot_build(p)$layout$panel_params[[1]]$y.range
+        else if (packageVersion('ggplot2') >= '2.2.0')
           axisYrange <- ggplot_build(p)$layout$panel_ranges[[1]]$y.range
         else
           axisYrange <- ggplot_build(p)$panel$ranges[[1]]$y.range

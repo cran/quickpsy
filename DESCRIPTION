@@ -1,10 +1,10 @@
 Package: quickpsy
 Type: Package
 Title: Fits Psychometric Functions for Multiple Groups
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: c(
     person("Linares", "Daniel", email = "danilinares@gmail.com", role = c("aut","cre")),
-    person("López-Moliner", "Joan", email = "j.lopezmoliner@gmail.com", role = "aut"))
+    person("L<U+00F3>pez-Moliner", "Joan", email = "j.lopezmoliner@gmail.com", role = "aut"))
 URL: http://dlinares.org/quickpsy.html
 Description: Quickly fits and plots psychometric functions (normal, logistic,
     Weibull or any or any function defined by the user) for multiple groups.
@@ -13,11 +13,11 @@ Imports: MPDiR
 Encoding: UTF-8
 License: MIT + file LICENSE
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 NeedsCompilation: no
-Packaged: 2016-10-26 18:30:18 UTC; daniellinares
+Packaged: 2018-06-12 13:53:18 UTC; daniellinares
 Author: Linares Daniel [aut, cre],
-  López-Moliner Joan [aut]
+  L<U+00F3>pez-Moliner Joan [aut]
 Maintainer: Linares Daniel <danilinares@gmail.com>
 Repository: CRAN
-Date/Publication: 2016-10-27 00:21:52
+Date/Publication: 2018-06-12 14:05:14 UTC
