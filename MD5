@@ -1,4 +1,4 @@
-f722ea4dec02ee9c114e32708d9e0ce7 *DESCRIPTION
+a3453f1df4b92757f85e6609f2e2dfa0 *DESCRIPTION
 8517aaf45ec6f117e55249a27bc677c3 *LICENSE
 e020ecc67cc962822ae7b1d724f3878c *NAMESPACE
 a5f1a42334fffdc004414b25016b3fb2 *R/aic.R
@@ -64,7 +64,7 @@ bbd1899729be2b33283817924096a9df *R/thresholdsbootstrap.R
 c0120932cd500fff749b8fa5cc58c897 *R/thresholdsci.R
 b24c8cf5bde2bc1a3abc8a0f9b4ed29f *R/weibull_fun.R
 26f0ba9e5937b46a9c9489dfa913005f *R/ypred.R
-3bb9b5b49b72101f17f424e8885ef632 *data/qpdat.rda
+4f481b7debe7a02662837f4159a18515 *data/qpdat.rda
 0559c106c22d638905ada9ecf65f3f9c *inst/CITATION
 ca0a1cb833f7949fd804fe711c144e38 *inst/extdata/example1/aa1.txt
 eb8572f4d897976f95d0879ea6b10491 *inst/extdata/example1/bb1.txt
@@ -125,7 +125,7 @@ ad51b0d6eba4c609ad824ec56468564b *man/quickpsy_.Rd
 09b3862ef73013acd432f1d9e8404b04 *man/sse.Rd
 b7b9cee933ca18ff0eb0c112d532251c *man/summary.quickpsy.Rd
 19adee2a869c8816cb716f54831135da *man/thresholdcomparisons.Rd
-db11da6409c8f28be3526cae964cc616 *man/thresholds.Rd
+e415687393ed120b32435f9a0df3dd4c *man/thresholds.Rd
 416226fafe42cd41c1a35aa92be33281 *man/thresholdsbootstrap.Rd
 4aee1305e0073cb46f2ceb0084c76dfe *man/thresholdsci.Rd
 0228af2b551b009a366087708112b56c *man/weibull_fun.Rd

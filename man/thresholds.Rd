@@ -18,7 +18,6 @@ has been used to fit the curves (default is \code{FALSE}).}
 Calculates the thresholds
 }
 \keyword{Calculates}
-\keyword{\code{thresholds}}
 \keyword{internal}
 \keyword{the}
 \keyword{thresholds}
